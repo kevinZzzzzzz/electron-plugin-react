@@ -1,9 +1,11 @@
 {
 	"name": "electron-plugin-react",
 	"version": "1.0.0",
+  "main": "./electron/main.js",
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build --mode production",
+    "electron:dev": "vite --config vite.config.electron.ts",
 		"lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
 		"preview": "vite preview",
 		"prepare ": "husky install"
@@ -15,7 +17,8 @@
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-redux": "^8.0.7",
-		"react-router-dom": "^6.8.1"
+		"react-router-dom": "^6.8.1",
+    "electron": "^31.1.0"
 	},
 	"lint-staged": {
 		"src/**/*.{js,jsx,tsx,ts}": [
@@ -48,7 +51,11 @@
 		"husky": "8.0.3",
 		"lint-staged": "13.2.2",
 		"rollup-plugin-visualizer": "^5.9.0",
-		"unplugin-auto-import": "^0.16.7"
+		"unplugin-auto-import": "^0.16.7",
+    "electron-builder": "^24.13.3",
+    "electron-reloader": "^1.2.3",
+    "vite-plugin-electron": "^0.28.7",
+    "electron-updater": "^6.2.1"
 	},
 	"config": {
 		"commitizen": {
