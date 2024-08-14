@@ -4,7 +4,7 @@ const path = require('path')
 
 const NODE_ENV = process.env.NODE_ENV
 const isDev = NODE_ENV === 'development'
-
+process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
 function createNotification(title, body) {
   new Notification({ title, body }).show()
 }
@@ -23,7 +23,7 @@ const createWindow = () => {
 
 
   if (isDev) {
-    win.loadURL('http://192.168.120.178:8881/#/home')
+    win.loadURL('http://192.168.1.14:8881/#/home')
     win.webContents.openDevTools()
   } else {
     win.loadFile(path.join(__dirname, '../dist/index.html'))
