@@ -1,0 +1,35 @@
+.marketItem {
+  cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  border: 2px solid rgb(211, 210, 210);
+  border-radius: 10px;
+  &_main {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    grid-gap: 10px;
+    &_photo {
+      width: 80px;
+      height: 80px;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      @include center();
+      p {
+        font-size: 40px;
+        color: #e82f28;
+      }
+    }
+    &_info {
+      h2 {
+        color: #000;
+      }
+      p {
+        color: #666;
+        margin: 4px 0;
+      }
+    }
+  }
+}
+.marketItem:hover {
+  box-shadow: 10px 10px 20px rgb(163, 162, 162)
+}

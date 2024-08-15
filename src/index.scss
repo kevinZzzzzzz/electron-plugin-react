@@ -23,3 +23,6 @@ ul {
   box-sizing: border-box;
   font-family: 'PingFangSC-Regular', 'PingFang SC';
 }
+*::-webkit-scrollbar {
+  display: none;
+}

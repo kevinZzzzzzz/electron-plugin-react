@@ -2,72 +2,82 @@
 export const pluginList = [
   {
     id: 1,
-    name: 'Plugin 1',
-    description: 'This is plugin 1',
-    icon: '',
-    path: '/plugin/p1.js'
+    name: "Plugin 1",
+    shortName: "p1",
+    description: "This is plugin 1",
+    icon: "",
+    path: "/plugin/p1.js",
   },
   {
     id: 2,
-    name: 'Plugin 2',
-    description: 'This is plugin 2',
-    icon: '',
-    path: '/plugin/p2.js'
+    name: "Plugin 2",
+    shortName: "p2",
+    description: "This is plugin 2",
+    icon: "",
+    path: "/plugin/p2.js",
   },
   {
     id: 3,
-    name: 'Plugin 3',
-    description: 'This is plugin 3',
-    icon: '',
-    path: '/plugin/p3.js'
+    name: "Plugin 3",
+    shortName: "p3",
+    description: "This is plugin 3",
+    icon: "",
+    path: "/plugin/p3.js",
   },
   {
     id: 4,
-    name: 'Plugin 4',
-    description: 'This is plugin 4',
-    icon: '',
-    path: '/plugin/p4.js'
+    name: "Plugin 4",
+    shortName: "p4",
+    description: "This is plugin 4",
+    icon: "",
+    path: "/plugin/p4.js",
   },
   {
     id: 5,
-    name: 'Plugin 5',
-    description: 'This is plugin 5',
-    icon: '',
-    path: '/plugin/p5.js'
+    name: "Plugin 5",
+    shortName: "p5",
+    description: "This is plugin 5",
+    icon: "",
+    path: "/plugin/p5.js",
   },
   {
     id: 6,
-    name: 'Plugin 6',
-    description: 'This is plugin 6',
-    icon: '',
-    path: '/plugin/p6.js'
+    name: "Plugin 6",
+    shortName: "p6",
+    description: "This is plugin 6",
+    icon: "",
+    path: "/plugin/p6.js",
   },
   {
     id: 7,
-    name: 'Plugin 7',
-    description: 'This is plugin 7',
-    icon: '',
-    path: '/plugin/p7.js'
+    name: "Plugin 7",
+    shortName: "p7",
+    description: "This is plugin 7",
+    icon: "",
+    path: "/plugin/p7.js",
   },
   {
     id: 8,
-    name: 'Plugin 8',
-    description: 'This is plugin 8',
-    icon: '',
-    path: '/plugin/p8.js'
+    name: "Plugin 8",
+    shortName: "p8",
+    description: "This is plugin 8",
+    icon: "",
+    path: "/plugin/p8.js",
   },
   {
     id: 9,
-    name: 'Plugin 9',
-    description: 'This is plugin 9',
-    icon: '',
-    path: '/plugin/p9.js'
+    name: "Plugin 9",
+    shortName: "p9",
+    description: "This is plugin 9",
+    icon: "",
+    path: "/plugin/p9.js",
   },
   {
     id: 10,
-    name: 'Plugin 10',
-    description: 'This is plugin 10',
-    icon: '',
-    path: '/plugin/p10.js'
-  }
-]
+    name: "Plugin 10",
+    shortName: "p10",
+    description: "This is plugin 10",
+    icon: "",
+    path: "/plugin/p10.js",
+  },
+];

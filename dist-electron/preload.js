@@ -6,5 +6,18 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 contextBridge.exposeInMainWorld("$electronAPI", {
-  showNotification: (title, body) => ipcRenderer.send("show-notification", title, body)
+  showNotification: (title, body) => ipcRenderer.send("show-notification", title, body),
+  setStoreValue: (key, value) => {
+    ipcRenderer.send("setStore", key, value);
+  },
+  getStoreValue: (key) => {
+    const resp = ipcRenderer.sendSync("getStore", key);
+    return resp;
+  },
+  delStoreValue: (key) => {
+    ipcRenderer.send("delStore", key);
+  },
+  clearStoreValue: () => {
+    ipcRenderer.send("clearStore");
+  }
 });
