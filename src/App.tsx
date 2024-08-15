@@ -13,17 +13,29 @@ import api from "@/api";
 import HasLayout from "./layout/HasLayout";
 import "./index.scss";
 import { getDownloadPlugins, importPlugin } from "./utils";
+import { message, notification } from "antd";
+import { SmileOutlined } from "@ant-design/icons";
 declare global {
   interface Window {
     $api: any;
     $electronAPI: any;
+    $plugins: any;
   }
 }
 /* 
   设置全局变量
 */
 window.$api = { ...api };
-
+window.$plugins = new Proxy({}, {
+  get(target, key) {
+    // console.log(target, key)
+    if (!Reflect.has(target, key)) {
+      message.warning('请先至插件市场下载插件～～～');
+      return false
+    }
+    return Reflect.get(target, key);
+  }
+})
 function App() {
   useEffect(() => {
     const plugins = getDownloadPlugins();

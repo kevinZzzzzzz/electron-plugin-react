@@ -26,7 +26,7 @@ const createWindow = async () => {
     height: 800,
     frame: false,
     // alwaysOnTop: true,
-    titleBarStyle: "hidden",
+    titleBarStyle: "default",
     backgroundColor: "#fff",
     webPreferences: {
       nodeIntegration: true,
@@ -36,12 +36,12 @@ const createWindow = async () => {
     }
   });
   win.setAlwaysOnTop(true);
-  win.setMenu(null);
+  win.removeMenu();
   setTimeout(() => {
     win.setAlwaysOnTop(false);
   }, 3e3);
   if (isDev) {
-    win.loadURL("http://192.168.120.178:8881/#/home");
+    win.loadURL("http://192.168.1.4:8881/#/home");
     win.webContents.openDevTools();
   } else {
     win.loadFile(path.join(__dirname, "../dist/index.html"));

@@ -1,19 +1,16 @@
 import { injectJsError } from "@/utils/monitor";
-import { Button } from "antd";
+import { Button, notification } from "antd";
 import React, { useState, useEffect } from "react";
 import styles from "./index.module.scss";
+import Installed from "@/assets/installed.png";
+import { estimatePlugin } from "@/utils";
 
 function HomePage(props: any) {
   useEffect(() => {
     injectJsError();
   }, []);
   const handlePluginRun = (id) => {
-    // if (!window[`P${id}`]) {
-    //   console.log("插件未运行");
-    //   return;
-    // }
-    console.log("插件运行成功");
-    window[`P${id}`].print();
+    window.$plugins[`P${id}`].print();
   };
   return (
     <div className={styles.home}>
@@ -27,6 +24,7 @@ function HomePage(props: any) {
             }}
           >
             插件 {item}
+            {estimatePlugin(item) ? <img src={Installed} alt="" /> : null}
           </div>
         );
       })}

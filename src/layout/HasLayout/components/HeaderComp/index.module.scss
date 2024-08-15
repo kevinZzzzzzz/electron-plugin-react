@@ -13,8 +13,8 @@
     -webkit-user-select: none;
   }
   &_tools {
+    cursor: pointer;
     img {
-      cursor: pointer;
       width: 24px;
       height: 24px;
     }

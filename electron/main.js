@@ -30,7 +30,7 @@ const createWindow = async () => {
     height: 800,
     frame: false,
     // alwaysOnTop: true,
-    titleBarStyle: "hidden",
+    titleBarStyle: "default",
     backgroundColor: "#fff",
     webPreferences: {
       nodeIntegration: true, // 解决无法使用 require 加载的 bug
@@ -39,13 +39,13 @@ const createWindow = async () => {
     },
   });
   win.setAlwaysOnTop(true); // 打开后置顶
-  win.setMenu(null); // 隐藏菜单栏
 
+  win.removeMenu() // 隐藏菜单栏
   setTimeout(() => {
     win.setAlwaysOnTop(false);
   }, 3000);
   if (isDev) {
-    win.loadURL("http://192.168.120.178:8881/#/home");
+    win.loadURL("http://192.168.1.4:8881/#/home");
     win.webContents.openDevTools();
   } else {
     win.loadFile(path.join(__dirname, "../dist/index.html"));
@@ -79,6 +79,7 @@ const createWindow = async () => {
 app.whenReady().then(() => {
   createWindow();
   autoUpdater.checkForUpdates(); // 热更新
+
   // 刷新
   globalShortcut.register("CommandOrControl+R", () => {
     win.reload();

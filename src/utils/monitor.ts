@@ -88,8 +88,8 @@ class ErrorJsObj {
 }
 export function injectJsError() {
   window.addEventListener("error", (event) => {
-    console.log(event);
     event.preventDefault();
+    console.log(event);
     if (!errorMap[getErrorUid(event.message)]) {
       errorMap[getErrorUid(event.message)] = new ErrorJsObj(event);
       // console.log(event, errorMap[getErrorUid(event.message)], "event=>>>>>>>");

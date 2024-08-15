@@ -12,6 +12,14 @@
   border: 2px solid rgb(211, 210, 210);
   border-radius: 10px;
   text-align: center;
+  position: relative;
+  img {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 10px;
+    top: 10px
+  }
 }
 .item:hover {
   box-shadow: 10px 10px 20px rgb(163, 162, 162)

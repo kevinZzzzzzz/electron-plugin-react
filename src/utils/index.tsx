@@ -1,3 +1,4 @@
+import { SmileOutlined } from "@ant-design/icons";
 import { message, notification } from "antd";
 
 /*
@@ -79,6 +80,13 @@ export const importPlugin = (id) => {
   script.type = "module";
   // script.async = true;
   document.body.appendChild(script);
+
+  notification.open({
+    message: `插件${id}运行成功`,
+    description:
+      `插件${id}运行成功`,
+      icon: <SmileOutlined style={{ color: '#108ee9' }} />,
+  });
 };
 
 /**
@@ -91,8 +99,18 @@ export const removePlugin = (id) => {
       i.parentNode.removeChild(i);
     }
   }
+  delete window.$plugins[`P${id}`]
 };
 
 /**
- * handle
+ * 清空插件缓存
  */
+export const clearPluginsCache = () => {
+  getDownloadPlugins().forEach((id) => {
+    removePlugin(id);
+  })
+  window.$electronAPI.setStoreValue("downloadedPlugins", []);
+  notification.open({
+    message: `清空完成`,
+  });
+};

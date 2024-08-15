@@ -3,9 +3,11 @@ const describe = "P3 插件";
 const print = () => {
   console.log(`[${name}] ${describe}`);
 };
-window.P3 = {
+
+const P3 = {
   name,
   describe,
   print,
 };
+window.$plugins.P3 = P3
 export default P3;
