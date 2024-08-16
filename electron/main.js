@@ -24,10 +24,14 @@ app.commandLine.appendSwitch("--ignore-certificate-errors", "true"); // 忽略�
 let win; // 窗口实例
 protocol.registerSchemesAsPrivileged([
   {
-    scheme: "app",
+    scheme: "kevin",
     privileges: {
-      secure: true,
       standard: true,
+      secure: true,
+      bypassCSP: true,
+      supportFetchAPI: true,
+      allowServiceWorkers: true,
+      corsEnabled: true,
     },
   },
 ]);
@@ -61,13 +65,14 @@ const createWindow = async () => {
     win.loadURL("http://192.168.120.178:8881/#/home");
     win.webContents.openDevTools();
   } else {
-    protocol.registerFileProtocol("atom", (request, callback) => {
-      const url = request.url.substr(7); // 去掉 'atom://' 的前缀
-      callback({ path: path.normalize(`${__dirname}/${url}`) });
-    });
+    // protocol.registerFileProtocol("kevin", (request, callback) => {
+    //   const url = request.url.substr(7); // 去掉 'atom://' 的前缀
+    //   callback({ path: path.normalize(`${__dirname}/${url}`) });
+    // });
+    win.loadFile("build/index.html").catch(() => null);
     // `file://${__dirname}/index.html`
     // win.loadFile("index.html");
-    win.webContents.openDevTools();
+    // win.webContents.openDevTools();
   }
   const { default: Store } = await import("electron-store");
   store = new Store(); // 仓库初始化

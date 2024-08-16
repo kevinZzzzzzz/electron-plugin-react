@@ -27,7 +27,18 @@ export default ({ mode, command }) => {
       react(),
       electron([
         {
-          entry: "electron/main.js",
+          entry: [
+            "electron/main.js",
+            "electron/preload.js",
+            "electron/listenEvent.js",
+          ],
+          vite: {
+            build: {
+              chunkSizeWarningLimit: 2048,
+              outDir: "build/electron",
+              // minify: "terser",
+            },
+          },
         },
       ]),
       electronRender(),
@@ -36,8 +47,15 @@ export default ({ mode, command }) => {
     build: {
       emptyOutDir: true,
       sourcemap: false,
-      outDir: "electron_dist",
+      outDir: "build",
       // manifest: true, //开启manifest
+      terserOptions: {
+        // 生产环境去除 console
+        compress: {
+          drop_console: true,
+          drop_debugger: true,
+        },
+      },
       rollupOptions: {
         output: {
           chunkFileNames: "static/js/[name].[hash].js",

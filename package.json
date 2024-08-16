@@ -1,7 +1,8 @@
 {
   "name": "electron-plugin-react",
   "version": "1.0.0",
-  "main": "electron/main.js",
+  "main": "build/electron/main.js",
+  "author": "kevinzzzzzzz",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build --mode production",
@@ -10,7 +11,8 @@
     "preview": "vite preview",
     "electron:build:win": "vite build --config vite.config.electron.ts && electron-builder",
     "electron:build:mac": "vite build --config vite.config.electron.ts && electron-builder --mac",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "electron-builder --dir"
   },
   "dependencies": {
     "@ant-design/icons": "^5.4.0",
@@ -68,20 +70,32 @@
   "build": {
     "appId": "com.my-website.electron-plugin-react",
     "productName": "electron-plugin-react",
-    "copyright": "Copyright © 2024 kuari",
+    "copyright": "Copyright © 2024 ${author}",
+    "asar": true,
     "mac": {
       "category": "public.app-category.utilities"
     },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
     "nsis": {
+      "language": 2052,
+      "artifactName": "${productName}_Windows_Setup_${version}.${ext}",
       "oneClick": false,
+      "createDesktopShortcut": true,
+      "allowElevation": true,
+      "createStartMenuShortcut": true,
+      "deleteAppDataOnUninstall": true,
       "allowToChangeInstallationDirectory": true
     },
     "files": [
-      "electron/**/*"
+      "build/**/*"
     ],
     "directories": {
       "buildResources": "assets",
-      "output": "electron_dist"
+      "output": "build_exe/${version}"
     }
   },
   "config": {
