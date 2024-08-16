@@ -9,8 +9,8 @@
     "electron:dev": "vite --config vite.config.electron.ts",
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
     "preview": "vite preview",
-    "electron:build:win": "vite build --config vite.config.electron.ts && electron-builder",
-    "electron:build:mac": "vite build --config vite.config.electron.ts && electron-builder --mac",
+    "electron:build:win": "vite build --config vite.config.electron.ts && electron-builder --win",
+    "electron:build:mac": "vite build --config vite.config.electron.ts && electron-builder --arm64",
     "prepare": "husky install",
     "test": "electron-builder --dir"
   },
