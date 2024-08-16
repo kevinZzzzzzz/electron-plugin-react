@@ -11,23 +11,31 @@ function HomePage(props: any) {
   }, []);
   const handlePluginRun = (id) => {
     window.$plugins[`P${id}`].print();
+    notification.success({
+      message: window.$plugins[`P${id}`].name,
+      description: window.$plugins[`P${id}`].describe,
+    });
   };
   return (
     <div className={styles.home}>
-      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => {
-        return (
-          <div
-            className={styles.item}
-            key={item}
-            onClick={() => {
-              handlePluginRun(item);
-            }}
-          >
-            插件 {item}
-            {estimatePlugin(item) ? <img src={Installed} alt="" /> : null}
-          </div>
-        );
-      })}
+      <h1>插件测试</h1>
+      <div className={styles.divider}></div>
+      <div className={styles.list}>
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => {
+          return (
+            <div
+              className={styles.item}
+              key={item}
+              onClick={() => {
+                handlePluginRun(item);
+              }}
+            >
+              插件 {item}
+              {estimatePlugin(item) ? <img src={Installed} alt="" /> : null}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

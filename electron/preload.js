@@ -27,4 +27,17 @@ contextBridge.exposeInMainWorld("$electronAPI", {
   clearStoreValue: () => {
     ipcRenderer.send("clearStore");
   },
+  hideWindow: () => {
+    ipcRenderer.send("hide-window");
+  },
+  fullScreen: (flag) => {
+    ipcRenderer.send("full-screen", flag);
+  },
+  isFullScreen: () => {
+    const resp = ipcRenderer.sendSync("isFullScreen");
+    return resp;
+  },
+  closeWindow: () => {
+    ipcRenderer.send("close-window");
+  },
 });

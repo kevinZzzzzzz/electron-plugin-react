@@ -7,24 +7,32 @@ const {
   WebContentsView,
   Notification,
   globalShortcut,
+  protocol,
   ipcMain,
 } = require("electron");
-const { autoUpdater } = require("electron-updater");
+// const { autoUpdater } = require("electron-updater");
+// const Multispinner = require("multispinner");
 const path = require("path");
-// const Store = require("electron-store");
+// const listenEvent = require("./listenEvent.js");
 let store; // 在全局作用域中声明
-// const store = new Store(); // 数据持久化
-
 const NODE_ENV = process.env.NODE_ENV;
-const isDev = NODE_ENV === "development";
-process.env["ELECTRON_DISABLE_SECURITY_WARNINGS"] = "true";
-function createNotification(title, body) {
-  new Notification({ title, body }).show();
-}
-let win;
+const isDev = NODE_ENV === "development"; // 开发环境
+process.env["ELECTRON_DISABLE_SECURITY_WARNINGS"] = "true"; // 禁用安全警告
+app.commandLine.appendSwitch("disable-web-security");
+app.commandLine.appendSwitch("disable-features", "OutOfBlinkCors"); // 允许跨域
+app.commandLine.appendSwitch("--ignore-certificate-errors", "true"); // 忽略证书相关错误
+let win; // 窗口实例
+protocol.registerSchemesAsPrivileged([
+  {
+    scheme: "app",
+    privileges: {
+      secure: true,
+      standard: true,
+    },
+  },
+]);
 // 加载一个新的BrowserWindow实例，并打开窗口
 const createWindow = async () => {
-  // Menu.setApplicationMenu(null);
   win = new BrowserWindow({
     width: 1000,
     height: 800,
@@ -32,7 +40,11 @@ const createWindow = async () => {
     // alwaysOnTop: true,
     titleBarStyle: "default",
     backgroundColor: "#fff",
+    title: "测试xxx",
+    icon: path.join(__dirname, "../public/electron.png"),
     webPreferences: {
+      webSecurity: false,
+      enableRemoteModule: true,
       nodeIntegration: true, // 解决无法使用 require 加载的 bug
       // 引入预加载脚本
       preload: path.join(__dirname, "preload.js"),
@@ -40,15 +52,22 @@ const createWindow = async () => {
   });
   win.setAlwaysOnTop(true); // 打开后置顶
 
-  win.removeMenu() // 隐藏菜单栏
+  win.removeMenu(); // 隐藏菜单栏
   setTimeout(() => {
     win.setAlwaysOnTop(false);
   }, 3000);
   if (isDev) {
-    win.loadURL("http://192.168.1.4:8881/#/home");
+    // win.loadURL("http://192.168.1.4:8881/#/home");
+    win.loadURL("http://192.168.120.178:8881/#/home");
     win.webContents.openDevTools();
   } else {
-    win.loadFile(path.join(__dirname, "../dist/index.html"));
+    protocol.registerFileProtocol("atom", (request, callback) => {
+      const url = request.url.substr(7); // 去掉 'atom://' 的前缀
+      callback({ path: path.normalize(`${__dirname}/${url}`) });
+    });
+    // `file://${__dirname}/index.html`
+    // win.loadFile("index.html");
+    win.webContents.openDevTools();
   }
   const { default: Store } = await import("electron-store");
   store = new Store(); // 仓库初始化
@@ -74,12 +93,25 @@ const createWindow = async () => {
   ipcMain.on("clearStore", () => {
     store.clear();
   });
-};
-// app模块在ready事件被激发后才会创建浏览器窗口，可以通过使用app.whenReady()API来监听此事件
-app.whenReady().then(() => {
-  createWindow();
-  autoUpdater.checkForUpdates(); // 热更新
+  // 隐藏窗口
+  ipcMain.on("hide-window", () => {
+    win.minimize();
+  });
+  // 全屏窗口
+  ipcMain.on("full-screen", (_, flag) => {
+    // flag ? win.maximize() : win.minimize();
+    win.setFullScreen(flag);
+  });
+  // 判断是否全屏
+  ipcMain.on("isFullScreen", (_, flag) => {
+    _.returnValue = win.isFullScreen();
+  });
+  // 关闭窗口
+  ipcMain.on("close-window", () => {
+    win.close();
+  });
 
+  // 按键监听
   // 刷新
   globalShortcut.register("CommandOrControl+R", () => {
     win.reload();
@@ -88,16 +120,19 @@ app.whenReady().then(() => {
   globalShortcut.register("CommandOrControl+Shift+R", () => {
     win.webContents.reloadIgnoringCache();
   });
+  // 事件监听
+  // listenEvent(win, store);
+};
+// app模块在ready事件被激发后才会创建浏览器窗口，可以通过使用app.whenReady()API来监听此事件
+app.whenReady().then(() => {
+  createWindow();
+  // autoUpdater.checkForUpdates(); // 热更新
+
   new Notification({
     title: "测试",
     body: "测试开始",
   }).show();
 });
-// app.on('ready', () => {
-//   console.log(Notification.isSupported(), 123)
-//   createWindow()
-//   autoUpdater.checkForUpdates()
-// })
 
 // 监听窗口关闭时退出应用
 app.on("window-all-closed", () => {

@@ -1,23 +1,28 @@
 {
   "name": "electron-plugin-react",
   "version": "1.0.0",
-  "main": "./electron/main.js",
+  "main": "electron/main.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build --mode production",
     "electron:dev": "vite --config vite.config.electron.ts",
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
     "preview": "vite preview",
-    "prepare ": "husky install"
+    "electron:build:win": "vite build --config vite.config.electron.ts && electron-builder",
+    "electron:build:mac": "vite build --config vite.config.electron.ts && electron-builder --mac",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@ant-design/icons": "^5.4.0",
     "@reduxjs/toolkit": "^1.9.5",
     "antd": "^5.20.1",
     "axios": "^1.3.2",
-    "electron": "^31.1.0",
+    "chalk": "^5.3.0",
+    "electron-reloader": "^1.2.3",
     "electron-store": "^9.0.0",
+    "electron-updater": "^6.2.1",
     "hoslink-xxx": "^1.1.1",
+    "multispinner": "^0.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.7",
@@ -43,9 +48,8 @@
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "cz-customizable": "6.3.0",
+    "electron": "^30.0.1",
     "electron-builder": "^24.13.3",
-    "electron-reloader": "^1.2.3",
-    "electron-updater": "^6.2.1",
     "eslint": "^8.38.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
@@ -57,8 +61,28 @@
     "unplugin-auto-import": "^0.16.7",
     "vite": "^4.3.9",
     "vite-plugin-electron": "^0.28.7",
+    "vite-plugin-electron-renderer": "^0.14.5",
     "vite-plugin-require-transform": "^1.0.5",
     "vite-plugin-webpackchunkname": "^0.2.4"
+  },
+  "build": {
+    "appId": "com.my-website.electron-plugin-react",
+    "productName": "electron-plugin-react",
+    "copyright": "Copyright © 2024 kuari",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "files": [
+      "electron/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets",
+      "output": "electron_dist"
+    }
   },
   "config": {
     "commitizen": {
