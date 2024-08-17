@@ -80,7 +80,10 @@ export const importPlugin = (id) => {
   script.type = "module";
   // script.async = true;
   document.body.appendChild(script);
-
+ 
+  import( /* @vite-ignore */ `/pluginList/p${id}.js`).then((res) => {
+    window.$plugins[`P${id}`] = res.default
+  })
   notification.open({
     message: `插件${id}运行成功`,
     description:

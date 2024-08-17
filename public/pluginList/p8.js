@@ -9,5 +9,5 @@ const P8 = {
   describe,
   print,
 };
-window.$plugins.P8 = P8
+
 export default P8;

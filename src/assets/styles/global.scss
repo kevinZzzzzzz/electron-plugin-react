@@ -18,3 +18,21 @@
   background-color: rgb(193, 211, 231);
   margin: 10px 0;
 }
+
+@mixin listScreen() {
+  @media (min-width: 1200px) {
+    &_list {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  @media (max-width: 800px) {
+    &_list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 500px) {
+    &_list {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}

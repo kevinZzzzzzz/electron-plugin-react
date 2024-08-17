@@ -62,7 +62,8 @@ const createWindow = async () => {
   }, 3000);
   if (isDev) {
     // win.loadURL("http://192.168.1.4:8881/#/home");
-    win.loadURL("http://192.168.120.178:8881/#/home");
+    // win.loadURL("http://192.168.120.178:8881/#/home");
+    win.loadURL("http://192.168.31.146:8881/#/home");
     win.webContents.openDevTools();
   } else {
     // protocol.registerFileProtocol("kevin", (request, callback) => {

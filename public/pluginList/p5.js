@@ -9,5 +9,5 @@ const P5 = {
   describe,
   print,
 };
-window.$plugins.P5 = P5
+
 export default P5;

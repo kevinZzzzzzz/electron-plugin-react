@@ -9,5 +9,5 @@ const P4 = {
   describe,
   print,
 };
-window.$plugins.P4 = P4
+
 export default P4;

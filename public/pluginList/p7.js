@@ -9,5 +9,5 @@ const P7 = {
   describe,
   print,
 };
-window.$plugins.P7 = P7
+
 export default P7;

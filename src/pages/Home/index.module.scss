@@ -1,11 +1,12 @@
 .home {
   padding: 10px;
-}
-.list {
-  padding: 10px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 15px;
+  &_list {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 15px;
+  }
+  @include listScreen()
 }
 .item {
   cursor: pointer;
