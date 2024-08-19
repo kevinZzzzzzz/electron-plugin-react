@@ -26,16 +26,18 @@ declare global {
   设置全局变量
 */
 window.$api = { ...api };
-window.$plugins = new Proxy({}, {
-  get(target, key) {
-    // console.log(target, key)
-    if (!Reflect.has(target, key)) {
-      message.warning('请先至插件市场下载插件～～～');
-      return false
-    }
-    return Reflect.get(target, key);
+window.$plugins = new Proxy(
+  {},
+  {
+    get(target, key) {
+      if (!Reflect.has(target, key)) {
+        message.warning("请先至插件市场下载插件～～～");
+        return false;
+      }
+      return Reflect.get(target, key);
+    },
   }
-})
+);
 function App() {
   useEffect(() => {
     const plugins = getDownloadPlugins();

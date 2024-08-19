@@ -5,4 +5,4 @@
 /release
 /electron_dist
 /build_exe
-/build
+/build/*

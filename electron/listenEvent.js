@@ -53,4 +53,8 @@ module.exports = (win, store) => {
   globalShortcut.register("CommandOrControl+Shift+R", () => {
     win.webContents.reloadIgnoringCache();
   });
+  // 打开控制台
+  globalShortcut.register("CommandOrControl+Shift+I", () => {
+    win.webContents.openDevTools();
+  });
 };

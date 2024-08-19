@@ -75,20 +75,19 @@ export const saveCacheData = (key, data) => {
  * 导入插件至全局
  */
 export const importPlugin = (id) => {
-  const script = document.createElement("script");
-  script.src = `pluginList/p${id}.js`;
-  script.type = "module";
-  // script.async = true;
-  document.body.appendChild(script);
- 
-  import( /* @vite-ignore */ `/pluginList/p${id}.js`).then((res) => {
-    window.$plugins[`P${id}`] = res.default
-  })
+  // const script = document.createElement("script");
+  // script.src = `pluginList/p${id}.js`;
+  // script.type = "module";
+  // // script.async = true;
+  // document.body.appendChild(script);
+
+  import(/* @vite-ignore */ `../../pluginList/p${id}.js`).then((res) => {
+    window.$plugins[`P${id}`] = res.default;
+  });
   notification.open({
     message: `插件${id}运行成功`,
-    description:
-      `插件${id}运行成功`,
-      icon: <SmileOutlined style={{ color: '#108ee9' }} />,
+    description: `插件${id}运行成功`,
+    icon: <SmileOutlined style={{ color: "#108ee9" }} />,
   });
 };
 
@@ -96,13 +95,13 @@ export const importPlugin = (id) => {
  * 删除全局插件脚本
  */
 export const removePlugin = (id) => {
-  const scriptList = document.getElementsByTagName("script");
-  for (const i of scriptList) {
-    if (i.getAttribute("src") == `pluginList/p${id}.js`) {
-      i.parentNode.removeChild(i);
-    }
-  }
-  delete window.$plugins[`P${id}`]
+  // const scriptList = document.getElementsByTagName("script");
+  // for (const i of scriptList) {
+  //   if (i.getAttribute("src") == `pluginList/p${id}.js`) {
+  //     i.parentNode.removeChild(i);
+  //   }
+  // }
+  delete window.$plugins[`P${id}`];
 };
 
 /**
@@ -111,7 +110,7 @@ export const removePlugin = (id) => {
 export const clearPluginsCache = () => {
   getDownloadPlugins().forEach((id) => {
     removePlugin(id);
-  })
+  });
   window.$electronAPI.setStoreValue("downloadedPlugins", []);
   notification.open({
     message: `清空完成`,
