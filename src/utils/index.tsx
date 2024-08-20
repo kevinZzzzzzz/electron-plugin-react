@@ -75,12 +75,12 @@ export const saveCacheData = (key, data) => {
  * 导入插件至全局
  */
 export const importPlugin = (id) => {
-  // const script = document.createElement("script");
-  // script.src = `pluginList/p${id}.js`;
-  // script.type = "module";
-  // // script.async = true;
-  // document.body.appendChild(script);
-
+  const script = document.createElement("script");
+  script.src = `pluginList/p${id}.js`;
+  script.type = "module";
+  // script.async = true;
+  // script.defer = true;
+  document.body.appendChild(script);
   import(/* @vite-ignore */ `../../pluginList/p${id}.js`).then((res) => {
     window.$plugins[`P${id}`] = res.default;
   });

@@ -26,6 +26,7 @@ declare global {
   设置全局变量
 */
 window.$api = { ...api };
+// 全局拦截
 window.$plugins = new Proxy(
   {},
   {
@@ -40,6 +41,7 @@ window.$plugins = new Proxy(
 );
 function App() {
   useEffect(() => {
+    // 安装已下载插件
     const plugins = getDownloadPlugins();
     if (plugins && plugins.length) {
       plugins.forEach((e) => {
