@@ -73,6 +73,7 @@ export const saveCacheData = (key, data) => {
 
 /**
  * 导入插件至全局
+ * @params id 插件id
  */
 export const importPlugin = (id) => {
   const script = document.createElement("script");

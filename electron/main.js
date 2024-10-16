@@ -64,7 +64,7 @@ const createWindow = async () => {
     // win.loadURL("http://192.168.1.4:8881/#/home");
     win.loadURL("http://192.168.120.178:8881/#/home");
     // win.loadURL("http://192.168.31.146:8881/#/home");
-    // win.webContents.openDevTools();
+    win.webContents.openDevTools();
   } else {
     // protocol.registerFileProtocol("kevin", (request, callback) => {
     //   const url = request.url.substr(7); // 去掉 'atom://' 的前缀
