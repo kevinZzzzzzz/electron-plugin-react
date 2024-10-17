@@ -4,8 +4,8 @@ export default {
   plugins: [
     {
       rules: {
-        "examine-subject": ({ subject }) => {
-          console.log(subject, "subject-----");
+        "examine-subject": (parsed) => {
+          console.log(parsed, "subject-----");
           return [true];
         },
       },
