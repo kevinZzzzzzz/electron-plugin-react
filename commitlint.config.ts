@@ -5,7 +5,7 @@ export default {
     {
       rules: {
         "examine-subject": (parsed) => {
-          console.log(parsed, "subject-----");
+          console.log(parsed.subject, "subject-----");
           return [true];
         },
       },
