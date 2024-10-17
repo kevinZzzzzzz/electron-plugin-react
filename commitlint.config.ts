@@ -33,6 +33,7 @@ export default {
       0,
       "never",
       (parsed) => {
+        console.log(parsed.raw, "parsed.raw---------");
         const hasScope = parsed.raw.includes("--scope");
         if (!hasScope) {
           return [false, '提交消息必须包含 "--scope" 参数'];
