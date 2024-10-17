@@ -1,6 +1,16 @@
 export default {
   // 继承的规则
   extends: ["@commitlint/config-conventional", "cz"],
+  plugins: [
+    {
+      rules: {
+        "examine-subject": ({ subject }) => {
+          console.log(subject, "subject-----");
+          return [true];
+        },
+      },
+    },
+  ],
   // 定义规则类型
   rules: {
     // type 类型定义，表示 git 提交的 type 必须在以下类型范围内
@@ -29,29 +39,8 @@ export default {
     // 'subject-full-stop': [2, 'never', '.'], // <subject> 以.为结束标志
     "subject-full-stop": [0, "never"],
     // 'subject-case': [2, 'never', 'lower-case'],
-    "subject-case": [
-      2,
-      "always",
-      (parsed) => {
-        console.log(parsed.raw, "parsed.raw---------");
-        const hasScope = parsed.raw.includes("--scope");
-        if (!hasScope) {
-          return [false, '提交消息必须包含 "--scope" 参数'];
-        }
-        return [true];
-      },
-    ],
-    // "subject-contains-scope-flag": [
-    //   2,
-    //   "always",
-    // (parsed) => {
-    //   const hasScope = parsed.raw.includes("--scope");
-    //   if (!hasScope) {
-    //     return [false, '提交消息必须包含 "--scope" 参数'];
-    //   }
-    //   return [true];
-    // },
-    // ],
+    "subject-case": [0, "never"],
+    "examine-subject": [2, "always"],
     // case可选值
     // 'lower-case' 小写 lowercase
     // 'upper-case' 大写 UPPERCASE
