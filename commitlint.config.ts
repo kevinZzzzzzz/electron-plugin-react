@@ -6,17 +6,27 @@ export default {
       // 校验提交信息是否包含 story 和 user 参数
       rules: {
         "examine-subject": (parsed) => {
+          const subjectArr = parsed.subject.split(" ");
           const containsStoryFlag =
             parsed.subject.includes("--story") ||
             parsed.subject.includes("--bug");
+          const containsUserFlag = parsed.subject.includes("--user");
           if (!containsStoryFlag) {
             return [false, '提交信息必须包含 "--story" 或者 "--bug" 参数'];
+          } else {
+            const storyStr = subjectArr[1]?.split("=");
+            if (storyStr.length <= 1 || !storyStr[1]) {
+              return [false, "请输入关联的 storyId或者bugId"];
+            }
           }
-          const containsUserFlag = parsed.subject.includes("--user");
           if (!containsUserFlag) {
             return [false, '提交信息必须包含 "--user" 参数'];
+          } else {
+            const userStr = subjectArr[2]?.split("=");
+            if (userStr.length <= 1 || !userStr[1]) {
+              return [false, "请输入提交人user"];
+            }
           }
-
           return [true];
         },
       },
