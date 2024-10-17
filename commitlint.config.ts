@@ -3,9 +3,20 @@ export default {
   extends: ["@commitlint/config-conventional", "cz"],
   plugins: [
     {
+      // 校验提交信息是否包含 scope 和 user 参数
       rules: {
         "examine-subject": (parsed) => {
-          console.log(parsed.subject, "subject-----");
+          const containsScopeFlag =
+            parsed.subject.includes("--scope") ||
+            parsed.subject.includes("--bug");
+          if (!containsScopeFlag) {
+            return [false, '提交信息必须包含 "--scope" 或者 "--bug" 参数'];
+          }
+          const containsUserFlag = parsed.subject.includes("--user");
+          if (!containsUserFlag) {
+            return [false, '提交信息必须包含 "--user" 参数'];
+          }
+
           return [true];
         },
       },
