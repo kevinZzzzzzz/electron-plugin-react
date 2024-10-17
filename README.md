@@ -1,16 +1,21 @@
 # xxx(项目名) 项目
 
 ## 项目地址
-#### [xxx](项目地址): 项目地址
+
+#### electron-plugin-react: https://github.com/kevinZzzzzzz/electron-plugin-react
+
+#### 文章地址: https://juejin.cn/post/7425974185321431067
 
 ## 技术选型
-* 框架 react V18
-* 路由 react-router-dom V8
-* 状态管理工具 redux+@reduxjs/toolkit
-* 打包构建工具 vite + rollup
-* UI框架 --
+
+- 框架 react V18
+- 路由 react-router-dom V8
+- 状态管理工具 redux+@reduxjs/toolkit
+- 打包构建工具 vite + rollup
+- UI 框架 --
 
 ## 快速启动
+
 - 安装依赖包
   ```
   npm install || pnpm install
@@ -21,20 +26,21 @@
   4、建议使用pnpm，优点：(1)轻量化，(2)速度快
   ```
 - 启动项目
-   ```
-   npm run dev || pnpm dev
-   ```
+  ```
+  npm run dev || pnpm dev
+  ```
 - 项目打包
-   ```
-   npm run build || pnpm build
-   ```
+  ```
+  npm run build || pnpm build
+  ```
 - 本地部署
-   ```
-   npm run docker || pnpm docker
-   本地部署前提：本地安装docker，并且执行环境要在 bash环境！！！
-   ```
+  ```
+  npm run docker || pnpm docker
+  本地部署前提：本地安装docker，并且执行环境要在 bash环境！！！
+  ```
 
 # 目录介绍
+
 ```
 cold-chain-web
 │  .cz-config.js                       ### 提交文案规范配置文件, 在pre-commit钩子中发挥作用
@@ -74,8 +80,11 @@ cold-chain-web
     └─utils                            ### 工具库
 
 ```
+
 ## commit 提交规范
+
 提交代码必须按照规范提交！！！
+
 ```
   type
 

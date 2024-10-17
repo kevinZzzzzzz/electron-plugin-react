@@ -14,6 +14,7 @@
     "prepare": "husky install",
     "test": "electron-builder --dir"
   },
+  "blog": "https://juejin.cn/post/7425974185321431067",
   "dependencies": {
     "@ant-design/icons": "^5.4.0",
     "@reduxjs/toolkit": "^1.9.5",
