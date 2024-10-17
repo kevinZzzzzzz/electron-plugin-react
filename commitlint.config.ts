@@ -7,11 +7,11 @@ export default {
       rules: {
         "examine-subject": (parsed) => {
           const subjectArr = parsed.subject.split(" ");
-          const containsStoryFlag =
+          const containsStoryOrBugFlag =
             parsed.subject.includes("--story") ||
             parsed.subject.includes("--bug");
           const containsUserFlag = parsed.subject.includes("--user");
-          if (!containsStoryFlag) {
+          if (!containsStoryOrBugFlag) {
             return [false, '提交信息必须包含 "--story" 或者 "--bug" 参数'];
           } else {
             const storyStr = subjectArr[1]?.split("=");
