@@ -30,8 +30,8 @@ export default {
     "subject-full-stop": [0, "never"],
     // 'subject-case': [2, 'never', 'lower-case'],
     "subject-case": [
-      0,
-      "never",
+      2,
+      "always",
       (parsed) => {
         console.log(parsed.raw, "parsed.raw---------");
         const hasScope = parsed.raw.includes("--scope");
